@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Notes.Infra;
-using System.Text.Json.Serialization;
-using System.Text.Json;
 using Notes.Domain.DTO;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Notes.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +30,11 @@ app.MapGet("/notesitems", async (Context db) =>
         .ThenInclude(nt => nt.Tag)
         .ToListAsync();
 
-    // Converte as notas para DTOs
+    if(notes == null)
+    {
+        return Results.NotFound();
+    }
+
     var noteDTOs = notes.Select(n => new NoteDTO
     {
         Id = n.Id,
@@ -44,5 +48,41 @@ app.MapGet("/notesitems", async (Context db) =>
 
     return Results.Ok(noteDTOs);
 });
+
+app.MapGet("/notesitems/{id}", async (int id, Context db) =>
+{
+    var note = await db.Notes
+        .Include(n => n.NoteTags)
+        .ThenInclude(nt => nt.Tag)
+        .FirstOrDefaultAsync(n => n.Id == id);
+
+    if (note == null)
+    {
+        return Results.NotFound();
+    }
+
+    var noteDTO = new NoteDTO
+    {
+        Id = note.Id,
+        Title = note.Title,
+        Content = note.Content,
+        Tags = note.NoteTags.Select(nt => new TagDTO
+        {
+            Id = nt.Tag.Id,
+            Name = nt.Tag.Name
+        }).ToList()
+    };
+
+    return Results.Ok(noteDTO);
+});
+
+app.MapPost("/noteitem", async (Note note, Context db) =>
+{
+    db.Notes.Add(note);
+    await db.SaveChangesAsync();
+    return Results.Ok();
+});
+
+
 
 app.Run();
