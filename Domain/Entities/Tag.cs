@@ -1,4 +1,4 @@
-﻿namespace Notes.Domain
+﻿namespace Notes.Domain.Entities
 {
     public class Tag
     {
