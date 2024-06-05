@@ -100,5 +100,17 @@ app.MapPatch("/notetitle/{id}", async (int id, string newTitle, Context db) =>
     return Results.NoContent();
 });
 
+app.MapPatch("/notecontent/{id}", async (int id, string newContent, Context db) =>
+{
+    var note = await db.Notes.FirstOrDefaultAsync(n => n.Id == id);
+
+    if(note == null) { return Results.NotFound(); }
+
+    note.Content = newContent;
+    note.UpdateLastModified();
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+});
 
 app.Run();
