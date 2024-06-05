@@ -113,4 +113,16 @@ app.MapPatch("/notecontent/{id}", async (int id, string newContent, Context db) 
     return Results.NoContent();
 });
 
+app.MapDelete("/notedelete/{id}", async (int id, Context db) =>
+{
+    var note = await db.Notes.FirstOrDefaultAsync(n => n.Id == id);
+
+    if(note == null) { return Results.NotFound(); }
+
+    db.Notes.Remove(note);
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+});
+
 app.Run();
