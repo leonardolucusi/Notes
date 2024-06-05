@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Notes.Infra;
 using Notes.Domain.DTO;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Notes.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,14 +22,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/notesitems", async (Context db) =>
+app.MapGet("/notes", async (Context db) =>
 {
     var notes = await db.Notes
         .Include(n => n.NoteTags)
         .ThenInclude(nt => nt.Tag)
         .ToListAsync();
 
-    if(notes == null)
+    if (notes == null)
     {
         return Results.NotFound();
     }
@@ -49,7 +48,7 @@ app.MapGet("/notesitems", async (Context db) =>
     return Results.Ok(noteDTOs);
 });
 
-app.MapGet("/notesitems/{id}", async (int id, Context db) =>
+app.MapGet("/notes/{id}", async (int id, Context db) =>
 {
     var note = await db.Notes
         .Include(n => n.NoteTags)
@@ -76,13 +75,30 @@ app.MapGet("/notesitems/{id}", async (int id, Context db) =>
     return Results.Ok(noteDTO);
 });
 
-app.MapPost("/noteitem", async (Note note, Context db) =>
+app.MapPost("/note", async (Note note, Context db) =>
 {
     db.Notes.Add(note);
     await db.SaveChangesAsync();
     return Results.Ok();
 });
 
+
+app.MapPatch("/notetitle/{id}", async (int id, string newTitle, Context db) =>
+{
+    var note = await db.Notes.FirstOrDefaultAsync(n => n.Id == id);
+
+    if (note == null)
+    {
+        return Results.NotFound();
+    }
+
+    note.Title = newTitle;
+    note.UpdateLastModified();
+
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+});
 
 
 app.Run();
