@@ -1,0 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using Notes.Infra;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Context")
+    ?? throw new InvalidOperationException("Connection string 'Context' not found.")));
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.MapGet("/notesitems", async (Context db) =>
+    await db.Notes.ToListAsync());
+
+app.Run();
