@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Notes.Infra;
 using Notes.Domain.DTO;
 using Notes.Domain.Entities;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -123,6 +124,16 @@ app.MapDelete("/notedelete/{id}", async (int id, Context db) =>
     await db.SaveChangesAsync();
 
     return Results.NoContent();
+});
+
+// feat to add: add tag 
+
+app.MapPost("/tag", async (Tag tag, Context db) =>
+{
+    if(tag == null || tag.Name == "") { return Results.BadRequest(); }
+    db.Tags.Add(tag);
+    await db.SaveChangesAsync();
+    return Results.Ok();
 });
 
 app.Run();

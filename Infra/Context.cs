@@ -17,6 +17,10 @@ namespace Notes.Infra
             modelBuilder.Entity<Note>()
                 .Property(u => u.Id)
                 .ValueGeneratedOnAdd(); //Gera o ID automaticamente, nao sendo necessario passar ID no CREATE da camada de Presentation
+            
+            modelBuilder.Entity<Tag>()
+                .Property(u => u.Id)
+                .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<NoteTag>()
             .HasKey(nt => new { nt.NoteId, nt.TagId });
