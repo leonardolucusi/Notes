@@ -9,7 +9,7 @@ namespace Notes.Controller
     {
         public static void MapNoteEndPoints(this WebApplication app)
         {
-            app.MapGet("/notes", async (Context db) =>
+            app.MapGet("/v1/notes", async (Context db) =>
             {
                 var notes = await db.Notes
                     .Include(n => n.NoteTags)
@@ -35,7 +35,7 @@ namespace Notes.Controller
                 return Results.Ok(noteDTOs);
             }).WithTags("Notes");
 
-            app.MapGet("/notes/{id}", async (int id, Context db) =>
+            app.MapGet("/v1/notes/{id}", async (int id, Context db) =>
             {
                 var note = await db.Notes
                     .Include(n => n.NoteTags)
@@ -62,14 +62,14 @@ namespace Notes.Controller
                 return Results.Ok(noteDTO);
             });
 
-            app.MapPost("/note", async (Note note, Context db) =>
+            app.MapPost("/v1/note", async (Note note, Context db) =>
             {
                 db.Notes.Add(note);
                 await db.SaveChangesAsync();
                 return Results.Ok();
             });
 
-            app.MapPatch("/notetitle/{id}", async (int id, string newTitle, Context db) =>
+            app.MapPatch("/v1/notetitle/{id}", async (int id, string newTitle, Context db) =>
             {
                 var note = await db.Notes.FirstOrDefaultAsync(n => n.Id == id);
 
@@ -86,7 +86,7 @@ namespace Notes.Controller
                 return Results.NoContent();
             });
 
-            app.MapPatch("/notecontent/{id}", async (int id, string newContent, Context db) =>
+            app.MapPatch("/v1/notecontent/{id}", async (int id, string newContent, Context db) =>
             {
                 var note = await db.Notes.FirstOrDefaultAsync(n => n.Id == id);
 
@@ -99,7 +99,7 @@ namespace Notes.Controller
                 return Results.NoContent();
             });
 
-            app.MapDelete("/notedelete/{id}", async (int id, Context db) =>
+            app.MapDelete("/v1/notedelete/{id}", async (int id, Context db) =>
             {
                 var note = await db.Notes.FirstOrDefaultAsync(n => n.Id == id);
 

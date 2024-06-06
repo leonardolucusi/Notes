@@ -7,7 +7,7 @@ namespace Notes.Controller
     {
         public static void MapNoteTagEndPoints(this WebApplication app)
         {
-            app.MapPost("notetag", async (int noteId, int tagId, Context db) =>
+            app.MapPost("/v1/notetag", async (int noteId, int tagId, Context db) =>
             {
                 if (noteId == null || tagId == null) { return Results.BadRequest(); }
                 var noteTag = new NoteTag
