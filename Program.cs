@@ -25,20 +25,17 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-//app.MapNoteEndPoints();
-//app.MapTagEndPoints();
-//app.MapNoteTagEndPoints();
 
 app.MapPost("/v1/api/notes/", async (CreateNoteCommand command, CreateNoteHandler createNoteHandler) =>
 {
     try
     {
         await createNoteHandler.Handle(command);
-        return Results.Ok("Nota criada com sucesso.");
+        return Results.Ok("Nota created successfully.");
     }
     catch (Exception ex)
     {
-        return Results.BadRequest(new { message = $"Erro ao criar nota: {ex.Message}" });
+        return Results.BadRequest(new { message = $"Error creating note: {ex.Message}" });
     }
 });
 
@@ -48,11 +45,11 @@ app.MapDelete("/v1/api/notes/{id}", async (int id, DeleteNoteHandler deleteNoteH
     {
         var deleteNoteCommand = new DeleteNoteCommand { Id = id };
         await deleteNoteHandler.Handle(deleteNoteCommand);
-        return Results.Ok("Nota deletada com sucesso.");
+        return Results.Ok("Note deleted successfully.");
     }
     catch (Exception ex)
     {
-        return Results.BadRequest(new { message = $"Erro ao deletar nota: {ex.Message}" });
+        return Results.BadRequest(new { message = $"Error deleting note: {ex.Message}" });
     }
 });
 
@@ -62,7 +59,7 @@ app.MapPatch("/v1/api/notes/{id}", async (UpdateNoteTitleCommand updateNoteTitle
     {
         if (string.IsNullOrEmpty(updateNoteTitleCommand.Title))
         {
-            return Results.BadRequest(new { message = "O título da nota não pode estar vazio." });
+            return Results.BadRequest(new { message = "Title can't be empty." });
         }
 
         await updateNoteHandler.Handle(updateNoteTitleCommand);
@@ -70,7 +67,7 @@ app.MapPatch("/v1/api/notes/{id}", async (UpdateNoteTitleCommand updateNoteTitle
     }
     catch(Exception ex)
     {
-        return Results.BadRequest(new {message = $"Erro ao alterar nota: {ex.Message}" });
+        return Results.BadRequest(new {message = $"Error updating note: {ex.Message}" });
     }
 });
 

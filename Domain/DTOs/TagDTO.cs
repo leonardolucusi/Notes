@@ -1,4 +1,4 @@
-﻿namespace Notes.Domain.DTO
+﻿namespace Notes.Domain.DTOs
 {
     public class TagDTO
     {

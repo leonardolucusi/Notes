@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Notes.Domain.DTO;
+using Notes.Domain.DTOs;
 using Notes.Domain.Entities;
 using Notes.Infra;
 

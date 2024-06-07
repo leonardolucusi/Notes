@@ -14,7 +14,10 @@ namespace Notes.Application.Commands.Handlers
 
         public async Task Handle(UpdateNoteTitleCommand command)
         {
-            await _noteRepository.UpdateNoteTitleAsync(command.Id, command.Title);
+            if (command.Title != null)
+            {
+                await _noteRepository.UpdateNoteTitleAsync(command.Id, command.Title);
+            }
         }
     }
 }
