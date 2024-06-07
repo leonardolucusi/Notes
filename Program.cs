@@ -26,3 +26,8 @@ app.MapTagEndPoints();
 app.MapNoteTagEndPoints();
 
 app.Run();
+
+/*adicionar repositories, 
+ * cqrs,
+ * deletar controller,
+ * segregar responsabilidades, */

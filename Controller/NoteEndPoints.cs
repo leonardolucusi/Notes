@@ -35,7 +35,7 @@ namespace Notes.Controller
                 return Results.Ok(noteDTOs);
             }).WithTags("Notes");
 
-            // get the amount needed only
+            // get only the requested amount of notes
             app.MapGet("/v1/note/{num}", async (int num, Context db) =>
             {
                 if (num <= 0) return Results.BadRequest("The number of notes to retrieve must be greater than zero.");
