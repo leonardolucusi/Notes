@@ -17,5 +17,17 @@ namespace Notes.Infra.Data.Repositories
             _context.Add(note);
             await _context.SaveChangesAsync();
         }
+
+        public async Task DeleteNoteAsync(int id)
+        {
+            var note = await _context.Notes.FindAsync(id);
+            if (note != null)
+            {
+                 _context.Notes.Remove(note);
+                await _context.SaveChangesAsync();
+                return;
+            }
+            throw new InvalidOperationException("Note not found.");
+        }
     }
 }

@@ -32,7 +32,7 @@ app.MapPost("/api/notes", async (CreateNoteCommand command, CreateNoteHandler cr
 {
     try
     {
-        await createNoteHandler.Handler(command);
+        await createNoteHandler.Handle(command);
         return Results.Ok("Nota criada com sucesso.");
     }
     catch (Exception ex)
@@ -41,9 +41,18 @@ app.MapPost("/api/notes", async (CreateNoteCommand command, CreateNoteHandler cr
     }
 });
 
-app.Run();
+app.MapDelete("/api/notes/{id}", async (int id, DeleteNoteHandler deleteNoteHandler) =>
+{
+    var command = new DeleteNoteCommand { Id = id };
+    try
+    {
+        await deleteNoteHandler.Handle(command);
+        return Results.Ok("Nota deletada com sucesso.");
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(new { message = $"Erro ao deletar nota: {ex.Message}" });
+    }
+});
 
-/*adicionar repositories, 
- * cqrs,
- * deletar controller,
- * segregar responsabilidades, */
+app.Run();

@@ -1,5 +1,4 @@
 ﻿using Notes.Application.Commands.Handlers;
-using Notes.Application.Commands.Services;
 using Notes.Domain.Repositories;
 using Notes.Infra.Data.Repositories;
 
@@ -12,6 +11,7 @@ namespace Notes.Infra.IoC
             services.AddScoped<INoteRepository,NoteRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<CreateNoteHandler>();
+            services.AddScoped<DeleteNoteHandler>();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Notes.Application.Commands.Handlers
 
         }
 
-        public async Task Handler(CreateNoteCommand command)
+        public async Task Handle(CreateNoteCommand command)
         {
             var note = new Note
             {

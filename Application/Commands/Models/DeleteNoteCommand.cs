@@ -2,5 +2,6 @@
 {
     public class DeleteNoteCommand
     {
+        public int Id;
     }
 }
