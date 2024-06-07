@@ -12,7 +12,7 @@ namespace Notes.Application.Commands.Handlers
         public CreateNoteHandler(INoteRepository noteRepository, ITagRepository tagRepository)
         {
             _noteRepository = noteRepository;
-            _tagRepository = tagRepository; 
+            _tagRepository = tagRepository;
 
         }
 
@@ -22,11 +22,20 @@ namespace Notes.Application.Commands.Handlers
             {
                 Title = command.Title,
                 Content = command.Content,
-                CreatedDate = command.CreatedDate,
-                LastModified = command.LastModified,
                 IsArchived = command.IsArchived,
                 IsFavorite = command.IsFavorite,
             };
+
+            if (command.TagIds != null && command.TagIds.Any())
+            {
+                var tags = await _tagRepository.GetTagsByIdsAsync(command.TagIds);
+                foreach (var tag in tags)
+                {
+                    note.NoteTags.Add(new NoteTag { Note = note, Tag = tag });
+                }
+               
+            }
+            await _noteRepository.AddNoteAsync(note);
         }
     }
 }
