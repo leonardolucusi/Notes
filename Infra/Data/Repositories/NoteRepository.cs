@@ -29,5 +29,24 @@ namespace Notes.Infra.Data.Repositories
             }
             throw new InvalidOperationException("Note not found.");
         }
+
+        public async Task UpdateNoteContentAsync(int id, string newContent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task UpdateNoteTitleAsync(int id, string newTitle)
+        {
+            var existingNote = await _context.Notes.FindAsync(id);
+            if(existingNote != null)
+            {
+                existingNote.Title = newTitle;
+                existingNote.UpdateLastModified();
+                _context.Notes.Update(existingNote);
+                await _context.SaveChangesAsync();
+                return;
+            }
+            throw new InvalidOperationException("Note not found.");
+        }
     }
 }

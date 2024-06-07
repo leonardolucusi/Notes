@@ -3,18 +3,18 @@ using Notes.Domain.Repositories;
 
 namespace Notes.Application.Commands.Handlers
 {
-    public class DeleteNoteHandler
+    public class UpdateNoteTitleHandler
     {
         private readonly INoteRepository _noteRepository;
 
-        public DeleteNoteHandler(INoteRepository noteRepository)
+        public UpdateNoteTitleHandler(INoteRepository noteRepository)
         {
             _noteRepository = noteRepository;
         }
 
-        public async Task Handle(DeleteNoteCommand command)
+        public async Task Handle(UpdateNoteTitleCommand command)
         {
-            await _noteRepository.DeleteNoteAsync(command.Id);
+            await _noteRepository.UpdateNoteTitleAsync(command.Id, command.Title);
         }
     }
 }

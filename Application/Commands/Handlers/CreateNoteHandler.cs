@@ -31,7 +31,7 @@ namespace Notes.Application.Commands.Handlers
                 var tags = await _tagRepository.GetTagsByIdsAsync(command.TagIds);
                 foreach (var tag in tags)
                 {
-                    note.NoteTags.Add(new NoteTag { Note = note, Tag = tag });
+                    note.NoteTags?.Add(new NoteTag { Note = note, Tag = tag });
                 }
                
             }

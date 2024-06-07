@@ -1,7 +1,8 @@
 ﻿namespace Notes.Application.Commands.Models
 {
-    public class DeleteNoteCommand
+    public class UpdateNoteTitleCommand
     {
         public int Id { get; set; }
+        public string? Title { get; set; }
     }
 }
