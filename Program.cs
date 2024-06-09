@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Notes.Application.Commands.NoteCommands.Handlers;
 using Notes.Application.Commands.NoteCommands.Models;
+using Notes.Application.Commands.NoteTagCommands.Handlers;
+using Notes.Application.Commands.NoteTagCommands.Models;
 using Notes.Application.Queries.Handlers;
 using Notes.Application.Queries.Models;
 using Notes.Infra;
@@ -27,7 +29,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// QUERIES
+// QUERIES NOTES
 
 app.MapGet("/v1/api/notes/", async (GetAllNotesHandler getAllNotesHandler) =>
 {
@@ -42,22 +44,36 @@ app.MapGet("/v1/api/notes/", async (GetAllNotesHandler getAllNotesHandler) =>
     }
 });
 
-app.MapGet("/v1/api/notes/{x}/{y}", async (int x, int y, GetPaginationNotesHandler getPaginationNotesHandler) =>
+app.MapGet("/v1/api/notes/{pageNumber}/{pageSize}", async (int pageNumber, int pageSize, GetPaginationNotesHandler getPaginationNotesHandler) =>
 {
     try
     {
-        var query = new GetPaginationNotesQuery { PageNumber = x, PageSize = y };
+        var query = new GetPaginationNotesQuery { PageNumber = pageNumber, PageSize = pageSize };
         var result = await getPaginationNotesHandler.Handle(query);
         return Results.Ok(result);
     }
     catch (Exception ex)
     {
-        // Trate exceções conforme necessário
         return Results.BadRequest(new { message = $"Error getting paginated notes: {ex.Message}" });
     }
 });
 
-// COMMANDS
+// COMMANDS NOTETAG
+
+app.MapPost("/v1/notetag/{tagId}/{noteId}", async (int tagId, int noteId, AddTagToNoteHandler addTagToNoteHandler) =>
+{
+    try
+    {
+        var command = new AddTagToNoteCommand { TagId = tagId, NoteId = noteId };
+        await addTagToNoteHandler.Handle(command);
+        return Results.Ok("Tag added to note successfully.");
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(new { message = $"Error adding tag to note: {ex.Message}" });
+    }
+});
+// COMMANDS NOTE
 
 app.MapPost("/v1/api/notes/", async (CreateNoteCommand command, CreateNoteHandler createNoteHandler) =>
 {
