@@ -1,8 +1,8 @@
-﻿using Notes.Application.Commands.Models;
+﻿using Notes.Application.Commands.NoteCommands.Models;
 using Notes.Domain.Entities;
 using Notes.Domain.Repositories;
 
-namespace Notes.Application.Commands.Handlers
+namespace Notes.Application.Commands.NoteCommands.Handlers
 {
     public class CreateNoteHandler
     {
@@ -33,7 +33,7 @@ namespace Notes.Application.Commands.Handlers
                 {
                     note.NoteTags?.Add(new NoteTag { Note = note, Tag = tag });
                 }
-               
+
             }
             await _noteRepository.AddNoteAsync(note);
         }

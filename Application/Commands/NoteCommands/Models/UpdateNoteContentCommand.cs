@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 
-namespace Notes.Application.Commands.Models
+namespace Notes.Application.Commands.NoteCommands.Models
 {
     public class UpdateNoteContentCommand
     {

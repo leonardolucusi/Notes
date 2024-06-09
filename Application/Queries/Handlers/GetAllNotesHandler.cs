@@ -1,6 +1,5 @@
 ﻿using Notes.Application.Queries.Models;
 using Notes.Domain.DTOs;
-using Notes.Domain.Entities;
 using Notes.Domain.Repositories;
 
 namespace Notes.Application.Queries.Handlers
@@ -12,6 +11,7 @@ namespace Notes.Application.Queries.Handlers
         {
             _noteQueryRepository = noteQueryRepository;
         }
+
         public async Task<IEnumerable<NoteDTO>> Handle(GetAllNotesQuery query)
         {
             var notes = await _noteQueryRepository.GetAllNotesAsync();

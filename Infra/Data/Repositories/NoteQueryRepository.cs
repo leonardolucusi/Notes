@@ -19,6 +19,22 @@ namespace Notes.Infra.Data.Repositories
           .ThenInclude(nt => nt.Tag)
           .ToListAsync();
         }
+
+        public async Task<IEnumerable<Note>> GetPaginatedNotes(int pageNumber, int pageSize)
+        {
+            int skip = (pageNumber - 1) * pageSize;
+
+            return await _context.Notes
+                .OrderByDescending(n => n.CreatedDate)
+                .Skip(skip)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
+        public async Task<int> GetTotalCount()
+        {
+            return await _context.Notes.CountAsync();
+        }
     }
 }
 

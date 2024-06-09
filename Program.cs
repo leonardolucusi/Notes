@@ -1,11 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using Notes.Infra;
-using Notes.Application.Commands.Handlers;
-using Notes.Application.Commands.Models;
-using Notes.Infra.IoC;
+using Notes.Application.Commands.NoteCommands.Handlers;
+using Notes.Application.Commands.NoteCommands.Models;
 using Notes.Application.Queries.Handlers;
 using Notes.Application.Queries.Models;
-
+using Notes.Infra;
+using Notes.Infra.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +27,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// QUERIES
+
 app.MapGet("/v1/api/notes/", async (GetAllNotesHandler getAllNotesHandler) =>
 {
     try
@@ -35,11 +36,28 @@ app.MapGet("/v1/api/notes/", async (GetAllNotesHandler getAllNotesHandler) =>
         var notes = await getAllNotesHandler.Handle(new GetAllNotesQuery());
         return Results.Ok(notes);
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
         return Results.BadRequest(new { message = $"Error getting notes: {ex.Message}" });
     }
 });
+
+app.MapGet("/v1/api/notes/{x}/{y}", async (int x, int y, GetPaginationNotesHandler getPaginationNotesHandler) =>
+{
+    try
+    {
+        var query = new GetPaginationNotesQuery { PageNumber = x, PageSize = y };
+        var result = await getPaginationNotesHandler.Handle(query);
+        return Results.Ok(result);
+    }
+    catch (Exception ex)
+    {
+        // Trate exceções conforme necessário
+        return Results.BadRequest(new { message = $"Error getting paginated notes: {ex.Message}" });
+    }
+});
+
+// COMMANDS
 
 app.MapPost("/v1/api/notes/", async (CreateNoteCommand command, CreateNoteHandler createNoteHandler) =>
 {
@@ -80,9 +98,9 @@ app.MapPatch("/v1/api/notes/{id}/title", async (UpdateNoteTitleCommand updateNot
         await updateNoteHandler.Handle(updateNoteTitleCommand);
         return Results.Ok("Note title update was successful");
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
-        return Results.BadRequest(new {message = $"Error updating note: {ex.Message}" });
+        return Results.BadRequest(new { message = $"Error updating note: {ex.Message}" });
     }
 });
 
@@ -93,7 +111,7 @@ app.MapPatch("/v1/api/notes/{id}/content", async (UpdateNoteContentCommand updat
         await updateNoteContentHandler.Handle(updateNoteContentCommand);
         return Results.Ok("Note content update was successful");
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
         return Results.BadRequest(new { message = $"Error updating note: {ex.Message}" });
     }

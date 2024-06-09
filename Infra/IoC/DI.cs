@@ -1,4 +1,4 @@
-﻿using Notes.Application.Commands.Handlers;
+﻿using Notes.Application.Commands.NoteCommands.Handlers;
 using Notes.Application.Queries.Handlers;
 using Notes.Domain.Repositories;
 using Notes.Infra.Data.Repositories;
@@ -13,6 +13,7 @@ namespace Notes.Infra.IoC
             services.AddScoped<INoteQueryRepository, NoteQueryRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<GetAllNotesHandler>();
+            services.AddScoped<GetPaginationNotesHandler>();
             services.AddScoped<CreateNoteHandler>();
             services.AddScoped<UpdateNoteTitleHandler>();
             services.AddScoped<UpdateNoteContentHandler>();
