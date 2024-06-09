@@ -26,6 +26,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
 app.MapPost("/v1/api/notes/", async (CreateNoteCommand command, CreateNoteHandler createNoteHandler) =>
 {
     try
@@ -53,7 +54,7 @@ app.MapDelete("/v1/api/notes/{id}", async (int id, DeleteNoteHandler deleteNoteH
     }
 });
 
-app.MapPatch("/v1/api/notes/{id}", async (UpdateNoteTitleCommand updateNoteTitleCommand, UpdateNoteTitleHandler updateNoteHandler) =>
+app.MapPatch("/v1/api/notes/{id}/title", async (UpdateNoteTitleCommand updateNoteTitleCommand, UpdateNoteTitleHandler updateNoteHandler) =>
 {
     try
     {
@@ -63,11 +64,24 @@ app.MapPatch("/v1/api/notes/{id}", async (UpdateNoteTitleCommand updateNoteTitle
         }
 
         await updateNoteHandler.Handle(updateNoteTitleCommand);
-        return Results.Ok("Note update successfully");
+        return Results.Ok("Note title update was successful");
     }
     catch(Exception ex)
     {
         return Results.BadRequest(new {message = $"Error updating note: {ex.Message}" });
+    }
+});
+
+app.MapPatch("/v1/api/notes/{id}/content", async (UpdateNoteContentCommand updateNoteContentCommand, UpdateNoteContentHandler updateNoteContentHandler) =>
+{
+    try
+    {
+        await updateNoteContentHandler.Handle(updateNoteContentCommand);
+        return Results.Ok("Note content update was successful");
+    }
+    catch(Exception ex)
+    {
+        return Results.BadRequest(new { message = $"Error updating note: {ex.Message}" });
     }
 });
 

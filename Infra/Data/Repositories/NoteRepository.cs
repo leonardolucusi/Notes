@@ -32,13 +32,22 @@ namespace Notes.Infra.Data.Repositories
 
         public async Task UpdateNoteContentAsync(int id, string newContent)
         {
-            throw new NotImplementedException();
+            var existingNote = await _context.Notes.FindAsync(id);
+            if(existingNote is not null)
+            {
+                existingNote.Content = newContent;
+                existingNote.UpdateLastModified();
+                _context.Notes.Update(existingNote);
+                await _context.SaveChangesAsync();
+                return;
+            }
+            throw new InvalidOperationException("Note not found.");
         }
 
         public async Task UpdateNoteTitleAsync(int id, string newTitle)
         {
             var existingNote = await _context.Notes.FindAsync(id);
-            if(existingNote != null)
+            if(existingNote is not null)
             {
                 existingNote.Title = newTitle;
                 existingNote.UpdateLastModified();

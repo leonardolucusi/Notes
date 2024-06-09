@@ -12,6 +12,7 @@ namespace Notes.Infra.IoC
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<CreateNoteHandler>();
             services.AddScoped<UpdateNoteTitleHandler>();
+            services.AddScoped<UpdateNoteContentHandler>();
             services.AddScoped<DeleteNoteHandler>();
         }
     }
