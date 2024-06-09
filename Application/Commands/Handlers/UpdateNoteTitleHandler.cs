@@ -5,9 +5,9 @@ namespace Notes.Application.Commands.Handlers
 {
     public class UpdateNoteTitleHandler
     {
-        private readonly INoteRepository _noteRepository;
+        private readonly INoteCommandRepository _noteRepository;
 
-        public UpdateNoteTitleHandler(INoteRepository noteRepository)
+        public UpdateNoteTitleHandler(INoteCommandRepository noteRepository)
         {
             _noteRepository = noteRepository;
         }

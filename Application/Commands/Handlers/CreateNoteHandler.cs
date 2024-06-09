@@ -6,10 +6,10 @@ namespace Notes.Application.Commands.Handlers
 {
     public class CreateNoteHandler
     {
-        private readonly INoteRepository _noteRepository;
+        private readonly INoteCommandRepository _noteRepository;
         private readonly ITagRepository _tagRepository;
 
-        public CreateNoteHandler(INoteRepository noteRepository, ITagRepository tagRepository)
+        public CreateNoteHandler(INoteCommandRepository noteRepository, ITagRepository tagRepository)
         {
             _noteRepository = noteRepository;
             _tagRepository = tagRepository;

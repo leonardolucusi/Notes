@@ -3,6 +3,8 @@ using Notes.Infra;
 using Notes.Application.Commands.Handlers;
 using Notes.Application.Commands.Models;
 using Notes.Infra.IoC;
+using Notes.Application.Queries.Handlers;
+using Notes.Application.Queries.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapGet("/v1/api/notes/", async (GetAllNotesHandler getAllNotesHandler) =>
+{
+    try
+    {
+        var notes = await getAllNotesHandler.Handle(new GetAllNotesQuery());
+        return Results.Ok(notes);
+    }
+    catch(Exception ex)
+    {
+        return Results.BadRequest(new { message = $"Error getting notes: {ex.Message}" });
+    }
+});
 
 app.MapPost("/v1/api/notes/", async (CreateNoteCommand command, CreateNoteHandler createNoteHandler) =>
 {

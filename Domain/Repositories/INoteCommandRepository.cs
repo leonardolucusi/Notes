@@ -2,7 +2,7 @@
 
 namespace Notes.Domain.Repositories
 {
-    public interface INoteRepository
+    public interface INoteCommandRepository
     {
         Task AddNoteAsync(Note note);
         Task UpdateNoteTitleAsync(int id, string newTitle);

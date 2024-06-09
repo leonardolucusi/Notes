@@ -3,11 +3,11 @@ using Notes.Domain.Repositories;
 
 namespace Notes.Infra.Data.Repositories
 {
-    public class NoteRepository : INoteRepository
+    public class NoteCommandRepository : INoteCommandRepository
     {
         private readonly Context _context;
 
-        public NoteRepository(Context context)
+        public NoteCommandRepository(Context context)
         {
             _context = context;
         }
@@ -29,7 +29,6 @@ namespace Notes.Infra.Data.Repositories
             }
             throw new InvalidOperationException("Note not found.");
         }
-
         public async Task UpdateNoteContentAsync(int id, string newContent)
         {
             var existingNote = await _context.Notes.FindAsync(id);

@@ -5,9 +5,9 @@ namespace Notes.Application.Commands.Handlers
 {
     public class DeleteNoteHandler
     {
-        private readonly INoteRepository _noteRepository;
+        private readonly INoteCommandRepository _noteRepository;
 
-        public DeleteNoteHandler(INoteRepository noteRepository)
+        public DeleteNoteHandler(INoteCommandRepository noteRepository)
         {
             _noteRepository = noteRepository;
         }
