@@ -60,11 +60,11 @@ app.MapGet("/v1/api/notes/{pageNumber}/{pageSize}", async (int pageNumber, int p
 
 // COMMANDS NOTETAG
 
-app.MapPost("/v1/notetag/{tagId}/{noteId}", async (int tagId, int noteId, AddTagToNoteHandler addTagToNoteHandler) =>
+app.MapPost("/v1/api/notetag/{tagId}/{noteId}", async (int tagId, int noteId, AddTagToNoteHandler addTagToNoteHandler) =>
 {
     try
     {
-        var command = new AddTagToNoteCommand { TagId = tagId, NoteId = noteId };
+        var command = new AddOrRemoveTagFromNoteCommand { TagId = tagId, NoteId = noteId };
         await addTagToNoteHandler.Handle(command);
         return Results.Ok("Tag added to note successfully.");
     }
@@ -73,6 +73,21 @@ app.MapPost("/v1/notetag/{tagId}/{noteId}", async (int tagId, int noteId, AddTag
         return Results.BadRequest(new { message = $"Error adding tag to note: {ex.Message}" });
     }
 });
+
+app.MapDelete("/v1/api/notetag/{tagId}/{noteId}", async (int tagId, int noteId, RemoveTagFromNoteHandler removeTagFromNoteHandler ) =>
+{
+    try
+    {
+        var command = new AddOrRemoveTagFromNoteCommand { TagId = tagId, NoteId = noteId };
+        await removeTagFromNoteHandler.Handle(command);
+        return Results.Ok("Tag removed from note successfully.");
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(new { message = $"Error removing tag from note: {ex.Message}" });
+    }
+});
+
 // COMMANDS NOTE
 
 app.MapPost("/v1/api/notes/", async (CreateNoteCommand command, CreateNoteHandler createNoteHandler) =>
