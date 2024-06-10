@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Notes.Application.Mapping;
 using Notes.Infra;
 using Notes.Infra.IoC;
 using Notes.Presentation.Endpoints.Commands;

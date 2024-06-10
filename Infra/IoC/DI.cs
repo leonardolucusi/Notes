@@ -1,8 +1,10 @@
 ﻿using Notes.Application.Commands.NoteCommands.Handlers;
 using Notes.Application.Commands.NoteTagCommands.Handlers;
 using Notes.Application.Mapping;
-using Notes.Application.Queries.Handlers;
+using Notes.Application.Queries.NoteQueries.Handlers;
 using Notes.Domain.Repositories;
+using Notes.Domain.Repositories.ITagRepository.ITagQueryRepository;
+using Notes.Domain.Repositories.ITagRepository.ITagQueryRepository.ITagQueryRepository;
 using Notes.Infra.Data.Repositories;
 
 namespace Notes.Infra.IoC
@@ -16,7 +18,8 @@ namespace Notes.Infra.IoC
             services.AddScoped<INoteCommandRepository, NoteCommandRepository>();
             services.AddScoped<INoteQueryRepository, NoteQueryRepository>();
             services.AddScoped<INoteTagRepository, NoteTagRepository>();
-            services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<ITagGetAllQueryRepository, TagQueryRepository>();
+            services.AddScoped<ITagByIdQueryRepository, TagQueryRepository>();
 
             services.AddScoped<AddTagToNoteHandler>();
             services.AddScoped<RemoveTagFromNoteHandler>();

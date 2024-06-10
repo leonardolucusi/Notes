@@ -1,5 +1,5 @@
-﻿using Notes.Application.Queries.Handlers;
-using Notes.Application.Queries.Models;
+﻿using Notes.Application.Queries.NoteQueries.Handlers;
+using Notes.Application.Queries.NoteQueries.Models;
 
 namespace Notes.Presentation.Endpoints.Queries
 {

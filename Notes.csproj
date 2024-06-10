@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Commands\TagCommands\Handlers\" />
-    <Folder Include="Application\Commands\TagCommands\Models\" />
+    <Folder Include="Application\Queries\TagQueries\Handlers\" />
+    <Folder Include="Application\Queries\TagQueries\Models\" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,4 @@
-﻿using Notes.Application.Commands.NoteCommands.Models;
-using Notes.Application.Commands.NoteTagCommands.Models;
+﻿using Notes.Application.Commands.NoteTagCommands.Models;
 using Notes.Domain.Repositories;
 
 namespace Notes.Application.Commands.NoteTagCommands.Handlers
