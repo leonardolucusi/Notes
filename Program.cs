@@ -11,8 +11,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDependecyInjection();
 
-
-
 builder.Services.AddDbContext<Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Context")
     ?? throw new InvalidOperationException("Connection string 'Context' not found.")));
@@ -28,6 +26,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapNoteQueriesEndpoints();
+app.MapTagQueriesEndpoints();
 
 app.MapNoteCommandsEndpoints();
 app.MapNoteTagsCommandsEndPoints();

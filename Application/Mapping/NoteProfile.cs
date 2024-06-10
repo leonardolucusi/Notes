@@ -9,6 +9,7 @@ namespace Notes.Application.Mapping
         public NoteProfile()
         {
             CreateMap<Note, NoteDTO>()
+
             .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.NoteTags.Select(nt => new TagDTO
             {
                 Id = nt.Tag.Id,
