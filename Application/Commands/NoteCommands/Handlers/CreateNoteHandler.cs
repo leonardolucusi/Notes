@@ -26,7 +26,7 @@ namespace Notes.Application.Commands.NoteCommands.Handlers
                 IsFavorite = command.IsFavorite,
             };
 
-            if (command.TagIds != null && command.TagIds.Any())
+            if (command.TagIds is not null && command.TagIds.Any())
             {
                 var tags = await _tagRepository.GetTagsByIdsAsync(command.TagIds);
                 foreach (var tag in tags)

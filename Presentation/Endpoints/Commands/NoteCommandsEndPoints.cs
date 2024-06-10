@@ -5,9 +5,9 @@ namespace Notes.Presentation.Endpoints.Commands
 {
     public static class NoteCommandsEndPoints
     {
-        public static void MapNoteCommandsEndpoints(this IEndpointRouteBuilder endpoints)
+        public static void MapNoteCommandsEndpoints(this IEndpointRouteBuilder endpoint)
         {
-            endpoints.MapPost("/v1/api/notes/", async (CreateNoteCommand command, CreateNoteHandler createNoteHandler) =>
+            endpoint.MapPost("/v1/api/notes/", async (CreateNoteCommand command, CreateNoteHandler createNoteHandler) =>
             {
                 try
                 {
@@ -20,7 +20,7 @@ namespace Notes.Presentation.Endpoints.Commands
                 }
             });
 
-            endpoints.MapDelete("/v1/api/notes/{id}", async (int id, DeleteNoteHandler deleteNoteHandler) =>
+            endpoint.MapDelete("/v1/api/notes/{id}", async (int id, DeleteNoteHandler deleteNoteHandler) =>
             {
                 try
                 {
@@ -34,7 +34,7 @@ namespace Notes.Presentation.Endpoints.Commands
                 }
             });
 
-            endpoints.MapPatch("/v1/api/notes/{id}/title", async (UpdateNoteTitleCommand updateNoteTitleCommand, UpdateNoteTitleHandler updateNoteHandler) =>
+            endpoint.MapPatch("/v1/api/notes/{id}/title", async (UpdateNoteTitleCommand updateNoteTitleCommand, UpdateNoteTitleHandler updateNoteHandler) =>
             {
                 try
                 {
@@ -52,7 +52,7 @@ namespace Notes.Presentation.Endpoints.Commands
                 }
             });
 
-            endpoints.MapPatch("/v1/api/notes/{id}/content", async (UpdateNoteContentCommand updateNoteContentCommand, UpdateNoteContentHandler updateNoteContentHandler) =>
+            endpoint.MapPatch("/v1/api/notes/{id}/content", async (UpdateNoteContentCommand updateNoteContentCommand, UpdateNoteContentHandler updateNoteContentHandler) =>
             {
                 try
                 {

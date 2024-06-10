@@ -1,5 +1,6 @@
 ﻿using Notes.Application.Commands.NoteCommands.Handlers;
 using Notes.Application.Commands.NoteTagCommands.Handlers;
+using Notes.Application.Mapping;
 using Notes.Application.Queries.Handlers;
 using Notes.Domain.Repositories;
 using Notes.Infra.Data.Repositories;
@@ -10,6 +11,8 @@ namespace Notes.Infra.IoC
     {
         public static void AddDependecyInjection(this IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(NoteProfile).Assembly);
+
             services.AddScoped<INoteCommandRepository, NoteCommandRepository>();
             services.AddScoped<INoteQueryRepository, NoteQueryRepository>();
             services.AddScoped<INoteTagRepository, NoteTagRepository>();

@@ -136,3 +136,5 @@ C:\Users\Leonardo\Desktop\Notes\obj\Debug\net8.0\Notes.pdb
 C:\Users\Leonardo\Desktop\Notes\obj\Debug\net8.0\Notes.genruntimeconfig.cache
 C:\Users\Leonardo\Desktop\Notes\obj\Debug\net8.0\ref\Notes.dll
 C:\Users\Leonardo\Desktop\Notes\obj\Debug\net8.0\Notes.sourcelink.json
+C:\Users\Leonardo\Desktop\Notes\bin\Debug\net8.0\libman.json
+C:\Users\Leonardo\Desktop\Notes\bin\Debug\net8.0\AutoMapper.dll

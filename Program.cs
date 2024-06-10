@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Notes.Application.Mapping;
 using Notes.Infra;
 using Notes.Infra.IoC;
 using Notes.Presentation.Endpoints.Commands;
@@ -10,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDependecyInjection();
+
+
 
 builder.Services.AddDbContext<Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Context")
