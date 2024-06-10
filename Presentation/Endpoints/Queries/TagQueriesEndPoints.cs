@@ -18,7 +18,7 @@ namespace Notes.Presentation.Endpoints.Queries
                 {
                     return Results.BadRequest(new { message = $"Error getting tags: {ex.Message}" });
                 }
-            });
+            }).WithTags("Tags");
         }
     }
 }

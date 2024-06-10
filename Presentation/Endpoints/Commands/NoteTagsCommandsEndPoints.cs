@@ -19,7 +19,7 @@ namespace Notes.Presentation.Endpoints.Commands
                 {
                     return Results.BadRequest(new { message = $"Error adding tag to note: {ex.Message}" });
                 }
-            });
+            }).WithTags("NoteTags");
 
             endpoint.MapDelete("/v1/api/notetag/{tagId}/{noteId}", async (int tagId, int noteId, RemoveTagFromNoteHandler removeTagFromNoteHandler) =>
             {
@@ -33,7 +33,7 @@ namespace Notes.Presentation.Endpoints.Commands
                 {
                     return Results.BadRequest(new { message = $"Error removing tag from note: {ex.Message}" });
                 }
-            });
+            }).WithTags("NoteTags");
         }
     }
 }

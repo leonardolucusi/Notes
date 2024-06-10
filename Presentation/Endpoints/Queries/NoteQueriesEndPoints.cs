@@ -18,7 +18,7 @@ namespace Notes.Presentation.Endpoints.Queries
                 {
                     return Results.BadRequest(new { message = $"Error getting notes: {ex.Message}" });
                 }
-            });
+            }).WithTags("Notes");
 
             endpoint.MapGet("/v1/api/notes/{pageNumber}/{pageSize}", async (int pageNumber, int pageSize, GetPaginationNotesHandler getPaginationNotesHandler) =>
             {
@@ -32,7 +32,7 @@ namespace Notes.Presentation.Endpoints.Queries
                 {
                     return Results.BadRequest(new { message = $"Error getting paginated notes: {ex.Message}" });
                 }
-            });
+            }).WithTags("Notes");
         }
     }
 }

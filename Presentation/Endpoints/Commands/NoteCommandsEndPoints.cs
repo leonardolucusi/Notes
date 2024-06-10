@@ -18,7 +18,7 @@ namespace Notes.Presentation.Endpoints.Commands
                 {
                     return Results.BadRequest(new { message = $"Error creating note: {ex.Message}" });
                 }
-            });
+            }).WithTags("Notes");
 
             endpoint.MapDelete("/v1/api/notes/{id}", async (int id, DeleteNoteHandler deleteNoteHandler) =>
             {
@@ -32,7 +32,7 @@ namespace Notes.Presentation.Endpoints.Commands
                 {
                     return Results.BadRequest(new { message = $"Error deleting note: {ex.Message}" });
                 }
-            });
+            }).WithTags("Notes");
 
             endpoint.MapPatch("/v1/api/notes/{id}/title", async (UpdateNoteTitleCommand updateNoteTitleCommand, UpdateNoteTitleHandler updateNoteHandler) =>
             {
@@ -50,7 +50,7 @@ namespace Notes.Presentation.Endpoints.Commands
                 {
                     return Results.BadRequest(new { message = $"Error updating note: {ex.Message}" });
                 }
-            });
+            }).WithTags("Notes");
 
             endpoint.MapPatch("/v1/api/notes/{id}/content", async (UpdateNoteContentCommand updateNoteContentCommand, UpdateNoteContentHandler updateNoteContentHandler) =>
             {
@@ -63,7 +63,7 @@ namespace Notes.Presentation.Endpoints.Commands
                 {
                     return Results.BadRequest(new { message = $"Error updating note: {ex.Message}" });
                 }
-            });
+            }).WithTags("Notes");
         }
     }
 }
