@@ -8,7 +8,8 @@ namespace Notes.Infra.Data.Repositories
         INoteUpdateContentCommandRepository,
         INoteUpdateTitleCommandRepository,
         INoteAddComandRepository,
-        INoteUpdateIsArchivedCommandRepository
+        INoteUpdateIsArchivedCommandRepository,
+        INoteUpdateIsFavoriteCommandRepository
     {
         private readonly Context _context;
 
@@ -41,6 +42,20 @@ namespace Notes.Infra.Data.Repositories
             if (existingNote is not null)
             {
                 existingNote.IsArchived = isArchived;
+                existingNote.UpdateLastModified();
+                _context.Notes.Update(existingNote);
+                await _context.SaveChangesAsync();
+                return;
+            }
+            throw new InvalidOperationException("Note not found.");
+        }
+
+        public async Task UpdateIsFavoriteAsync(int id, bool isFavorite)
+        {
+            var existingNote = await _context.Notes.FindAsync(id);
+            if (existingNote is not null)
+            {
+                existingNote.IsFavorite = isFavorite;
                 existingNote.UpdateLastModified();
                 _context.Notes.Update(existingNote);
                 await _context.SaveChangesAsync();

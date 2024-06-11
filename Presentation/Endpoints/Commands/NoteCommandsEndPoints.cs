@@ -77,6 +77,19 @@ namespace Notes.Presentation.Endpoints.Commands
                     return Results.BadRequest(new { message = $"Error updating note: {ex.Message}" });
                 }
             }).WithTags("Notes");
+
+            endpoint.MapPatch("/v1/api/notes/{id}/isfavorite", async (UpdateNoteIsFavoriteCommand updateNoteIsFavoriteCommand, UpdateNoteIsFavoriteHandler updateNoteIsFavoriteHandler) =>
+            {
+                try
+                {
+                    await updateNoteIsFavoriteHandler.Handle(updateNoteIsFavoriteCommand);
+                    return Results.Ok("Note content updated successfully.");
+                }
+                catch (Exception ex)
+                {
+                    return Results.BadRequest(new { message = $"Error updating note: {ex.Message}" });
+                }
+            }).WithTags("Notes");
         }
     }
 }

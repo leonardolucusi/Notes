@@ -13,7 +13,10 @@ namespace Notes.Application.Commands.NoteCommands.Handlers
         }
         public async Task Handle(UpdateNoteIsArchivedCommand command)
         {
-            await _noteUpdateIsArchivedCommandRepository.UpdateIsArchivedAsync(command.Id, command.IsArchived);
+            if (command is not null)
+            {
+                await _noteUpdateIsArchivedCommandRepository.UpdateIsArchivedAsync(command.Id, command.IsArchived);
+            }
         }
     }
 }
