@@ -1,5 +1,5 @@
 ﻿using Notes.Application.Commands.NoteTagCommands.Models;
-using Notes.Domain.Repositories;
+using Notes.Domain.Repositories.INoteTagRepository;
 
 namespace Notes.Application.Commands.NoteTagCommands.Handlers
 {

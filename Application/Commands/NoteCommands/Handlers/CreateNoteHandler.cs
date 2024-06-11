@@ -1,6 +1,6 @@
 ﻿using Notes.Application.Commands.NoteCommands.Models;
 using Notes.Domain.Entities;
-using Notes.Domain.Repositories;
+using Notes.Domain.Repositories.INoteRepository.CommandRepository;
 using Notes.Domain.Repositories.ITagRepository.ITagQueryRepository.ITagQueryRepository;
 
 namespace Notes.Application.Commands.NoteCommands.Handlers

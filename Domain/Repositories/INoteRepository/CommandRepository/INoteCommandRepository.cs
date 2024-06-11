@@ -1,6 +1,6 @@
 ﻿using Notes.Domain.Entities;
 
-namespace Notes.Domain.Repositories
+namespace Notes.Domain.Repositories.INoteRepository.CommandRepository
 {
     public interface INoteCommandRepository
     {

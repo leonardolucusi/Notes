@@ -1,5 +1,4 @@
-﻿
-namespace Notes.Domain.Repositories
+﻿namespace Notes.Domain.Repositories.INoteTagRepository
 {
     public interface INoteTagRepository
     {

@@ -1,5 +1,5 @@
 ﻿using Notes.Application.Commands.NoteCommands.Models;
-using Notes.Domain.Repositories;
+using Notes.Domain.Repositories.INoteRepository.CommandRepository;
 
 namespace Notes.Application.Commands.NoteCommands.Handlers
 {

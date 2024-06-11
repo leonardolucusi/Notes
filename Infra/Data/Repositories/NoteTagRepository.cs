@@ -1,5 +1,5 @@
 ﻿using Notes.Domain.Entities;
-using Notes.Domain.Repositories;
+using Notes.Domain.Repositories.INoteTagRepository;
 
 namespace Notes.Infra.Data.Repositories
 {

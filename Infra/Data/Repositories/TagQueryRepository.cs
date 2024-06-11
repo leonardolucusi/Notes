@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Notes.Application.Queries.TagQueries.Models;
 using Notes.Domain.Entities;
 using Notes.Domain.Repositories.ITagRepository.ITagQueryRepository;
 using Notes.Domain.Repositories.ITagRepository.ITagQueryRepository.ITagQueryRepository;

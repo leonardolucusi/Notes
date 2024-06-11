@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Notes.Domain.Entities;
-using Notes.Domain.Repositories;
+using Notes.Domain.Repositories.INoteRepository.QueryRepository;
 
 namespace Notes.Infra.Data.Repositories
 {
-    public class NoteQueryRepository : INoteQueryRepository
+    public class NoteQueryRepository : INoteGetTotalCountQueryRepository, INoteGetAllQueryRepository, INoteGetPaginatedQueryRepository
     {
         private readonly Context _context;
         public NoteQueryRepository(Context context)
@@ -22,11 +22,9 @@ namespace Notes.Infra.Data.Repositories
 
         public async Task<IEnumerable<Note>> GetPaginatedNotes(int pageNumber, int pageSize)
         {
-            int skip = (pageNumber - 1) * pageSize;
-
             return await _context.Notes
                 .OrderByDescending(n => n.CreatedDate)
-                .Skip(skip)
+                .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
         }
