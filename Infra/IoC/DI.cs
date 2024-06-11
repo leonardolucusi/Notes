@@ -22,6 +22,7 @@ namespace Notes.Infra.IoC
             services.AddScoped<INoteUpdateTitleCommandRepository, NoteCommandRepository>();
             services.AddScoped<INoteUpdateContentCommandRepository, NoteCommandRepository>();
             services.AddScoped<INoteAddComandRepository, NoteCommandRepository>();
+            services.AddScoped<INoteUpdateIsArchivedCommandRepository, NoteCommandRepository>();
      
 
             services.AddScoped<INoteGetTotalCountQueryRepository, NoteQueryRepository>();
@@ -45,6 +46,7 @@ namespace Notes.Infra.IoC
             services.AddScoped<UpdateNoteTitleHandler>();
             services.AddScoped<UpdateNoteContentHandler>();
             services.AddScoped<DeleteNoteHandler>();
+            services.AddScoped<UpdateNoteIsArchivedHandler>();
         }
     }
 }

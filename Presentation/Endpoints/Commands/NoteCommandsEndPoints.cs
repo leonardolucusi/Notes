@@ -64,6 +64,19 @@ namespace Notes.Presentation.Endpoints.Commands
                     return Results.BadRequest(new { message = $"Error updating note: {ex.Message}" });
                 }
             }).WithTags("Notes");
+
+            endpoint.MapPatch("/v1/api/notes/{id}/isarchived", async (UpdateNoteIsArchivedCommand updateNoteIsArchivedCommand, UpdateNoteIsArchivedHandler updateNoteIsArchivedHandler) =>
+            {
+                try
+                {
+                    await updateNoteIsArchivedHandler.Handle(updateNoteIsArchivedCommand);
+                    return Results.Ok("Note content updated successfully.");
+                }
+                catch (Exception ex)
+                {
+                    return Results.BadRequest(new { message = $"Error updating note: {ex.Message}" });
+                }
+            }).WithTags("Notes");
         }
     }
 }
