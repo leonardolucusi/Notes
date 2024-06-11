@@ -7,13 +7,13 @@ namespace Notes.Application.Commands.NoteCommands.Handlers
 {
     public class CreateNoteHandler
     {
-        private readonly INoteCommandRepository _noteCommandRepository;
-        private readonly ITagByIdQueryRepository _tagQueryRepository;
+        private readonly INoteAddComandRepository _noteAddComandRepository;
+        private readonly ITagByIdQueryRepository _tagByIdQueryRepository;
 
-        public CreateNoteHandler(INoteCommandRepository noteCommandRepository, ITagByIdQueryRepository tagQueryRepository)
+        public CreateNoteHandler(INoteAddComandRepository noteAddComandRepository, ITagByIdQueryRepository tagByIdQueryRepository)
         {
-            _noteCommandRepository = noteCommandRepository;
-            _tagQueryRepository = tagQueryRepository;
+            _noteAddComandRepository = noteAddComandRepository;
+            _tagByIdQueryRepository = tagByIdQueryRepository;
         }
 
         public async Task Handle(CreateNoteCommand command)
@@ -28,13 +28,13 @@ namespace Notes.Application.Commands.NoteCommands.Handlers
 
             if (command.TagIds is not null && command.TagIds.Any())
             {
-                var tags = await _tagQueryRepository.GetTagsByIdsAsync(command.TagIds);
+                var tags = await _tagByIdQueryRepository.GetTagsByIdsAsync(command.TagIds);
                 foreach (var tag in tags)
                 {
                     note.NoteTags?.Add(new NoteTag { Note = note, Tag = tag });
                 }
             }
-            await _noteCommandRepository.AddNoteAsync(note);
+            await _noteAddComandRepository.AddNoteAsync(note);
         }
     }
 }

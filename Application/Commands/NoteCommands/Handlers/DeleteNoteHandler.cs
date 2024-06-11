@@ -5,16 +5,16 @@ namespace Notes.Application.Commands.NoteCommands.Handlers
 {
     public class DeleteNoteHandler
     {
-        private readonly INoteCommandRepository _noteRepository;
+        private readonly INoteDeleteCommandRepository _noteDeleteCommandRepository;
 
-        public DeleteNoteHandler(INoteCommandRepository noteRepository)
+        public DeleteNoteHandler(INoteDeleteCommandRepository noteDeleteCommandRepository)
         {
-            _noteRepository = noteRepository;
+            _noteDeleteCommandRepository = noteDeleteCommandRepository;
         }
 
         public async Task Handle(DeleteNoteCommand command)
         {
-            await _noteRepository.DeleteNoteAsync(command.Id);
+            await _noteDeleteCommandRepository.DeleteNoteAsync(command.Id);
         }
     }
 }

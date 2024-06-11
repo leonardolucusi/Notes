@@ -3,7 +3,11 @@ using Notes.Domain.Repositories.INoteRepository.CommandRepository;
 
 namespace Notes.Infra.Data.Repositories
 {
-    public class NoteCommandRepository : INoteCommandRepository
+    public class NoteCommandRepository : 
+        INoteDeleteCommandRepository, 
+        INoteUpdateContentCommandRepository, 
+        INoteUpdateTitleCommandRepository, 
+        INoteAddComandRepository
     {
         private readonly Context _context;
 

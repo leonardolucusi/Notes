@@ -18,7 +18,11 @@ namespace Notes.Infra.IoC
         {
             services.AddAutoMapper(typeof(NoteProfile).Assembly);
 
-            services.AddScoped<INoteCommandRepository, NoteCommandRepository>();
+            services.AddScoped<INoteDeleteCommandRepository, NoteCommandRepository>();
+            services.AddScoped<INoteUpdateTitleCommandRepository, NoteCommandRepository>();
+            services.AddScoped<INoteUpdateContentCommandRepository, NoteCommandRepository>();
+            services.AddScoped<INoteAddComandRepository, NoteCommandRepository>();
+     
 
             services.AddScoped<INoteGetTotalCountQueryRepository, NoteQueryRepository>();
             services.AddScoped<INoteGetAllQueryRepository, NoteQueryRepository>();

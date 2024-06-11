@@ -5,18 +5,18 @@ namespace Notes.Application.Commands.NoteCommands.Handlers
 {
     public class UpdateNoteTitleHandler
     {
-        private readonly INoteCommandRepository _noteRepository;
+        private readonly INoteUpdateTitleCommandRepository _noteUpdateTitleCommandRepository;
 
-        public UpdateNoteTitleHandler(INoteCommandRepository noteRepository)
+        public UpdateNoteTitleHandler(INoteUpdateTitleCommandRepository noteUpdateTitleCommandRepository)
         {
-            _noteRepository = noteRepository;
+            _noteUpdateTitleCommandRepository = noteUpdateTitleCommandRepository;
         }
 
         public async Task Handle(UpdateNoteTitleCommand command)
         {
             if (command.Title is not null && command.Id > 0)
             {
-                await _noteRepository.UpdateNoteTitleAsync(command.Id, command.Title);
+                await _noteUpdateTitleCommandRepository.UpdateNoteTitleAsync(command.Id, command.Title);
             }
         }
     }
