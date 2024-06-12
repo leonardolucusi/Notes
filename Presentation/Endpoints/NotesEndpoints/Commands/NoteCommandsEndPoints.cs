@@ -1,7 +1,7 @@
 ﻿using Notes.Application.Commands.NoteCommands.Handlers;
 using Notes.Application.Commands.NoteCommands.Models;
 
-namespace Notes.Presentation.Endpoints.Commands
+namespace Notes.Presentation.Endpoints.NotesEndpoints.Commands
 {
     public static class NoteCommandsEndPoints
     {

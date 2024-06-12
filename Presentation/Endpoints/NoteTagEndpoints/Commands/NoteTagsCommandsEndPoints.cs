@@ -1,7 +1,7 @@
 ﻿using Notes.Application.Commands.NoteTagCommands.Handlers;
 using Notes.Application.Commands.NoteTagCommands.Models;
 
-namespace Notes.Presentation.Endpoints.Commands
+namespace Notes.Presentation.Endpoints.NoteTagEndpoints.Commands
 {
     public static class NoteTagsCommandsEndPoints
     {

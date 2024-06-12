@@ -1,7 +1,7 @@
 ﻿using Notes.Application.Queries.NoteQueries.Handlers;
 using Notes.Application.Queries.NoteQueries.Models;
 
-namespace Notes.Presentation.Endpoints.Queries
+namespace Notes.Presentation.Endpoints.NotesEndpoints.Queries
 {
     public static class NoteQueriesEndPoints
     {

@@ -1,7 +1,7 @@
 ﻿using Notes.Application.Queries.TagQueries.Handlers;
 using Notes.Application.Queries.TagQueries.Models;
 
-namespace Notes.Presentation.Endpoints.Queries
+namespace Notes.Presentation.Endpoints.TagEndpoints.Queries
 {
     public static class TagQueriesEndPoints
     {

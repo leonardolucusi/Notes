@@ -1,8 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Notes.Infra;
 using Notes.Infra.IoC;
-using Notes.Presentation.Endpoints.Commands;
-using Notes.Presentation.Endpoints.Queries;
+using Notes.Presentation.Endpoints.NotesEndpoints.Commands;
+using Notes.Presentation.Endpoints.NotesEndpoints.Queries;
+using Notes.Presentation.Endpoints.NoteTagEndpoints.Commands;
+using Notes.Presentation.Endpoints.TagEndpoints.Commands;
+using Notes.Presentation.Endpoints.TagEndpoints.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +29,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapNoteQueriesEndpoints();
+
+app.MapTagCommandsEndPoints();
 app.MapTagQueriesEndpoints();
 
 app.MapNoteCommandsEndpoints();
