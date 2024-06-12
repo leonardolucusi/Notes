@@ -70,7 +70,7 @@ namespace Notes.Presentation.Endpoints.NotesEndpoints.Commands
                 try
                 {
                     await updateNoteIsArchivedHandler.Handle(updateNoteIsArchivedCommand);
-                    return Results.Ok("Note content updated successfully.");
+                    return Results.Ok("Note is archived updated successfully.");
                 }
                 catch (Exception ex)
                 {
@@ -83,7 +83,7 @@ namespace Notes.Presentation.Endpoints.NotesEndpoints.Commands
                 try
                 {
                     await updateNoteIsFavoriteHandler.Handle(updateNoteIsFavoriteCommand);
-                    return Results.Ok("Note content updated successfully.");
+                    return Results.Ok("Note is favorite updated successfully.");
                 }
                 catch (Exception ex)
                 {

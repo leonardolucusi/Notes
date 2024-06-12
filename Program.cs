@@ -22,6 +22,7 @@ builder.Services.AddDbContext<Context>(options =>
     ?? throw new InvalidOperationException("Connection string 'Context' not found.")));
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateNoteCommandValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateTitleNoteCommandValidator>();
 builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
