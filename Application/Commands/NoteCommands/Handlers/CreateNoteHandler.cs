@@ -1,4 +1,5 @@
-﻿using Notes.Application.Commands.NoteCommands.Models;
+﻿using FluentValidation;
+using Notes.Application.Commands.NoteCommands.Models;
 using Notes.Domain.Entities;
 using Notes.Domain.Repositories.INoteRepository.CommandRepository;
 using Notes.Domain.Repositories.ITagRepository.ITagQueryRepository.ITagQueryRepository;
@@ -9,16 +10,26 @@ namespace Notes.Application.Commands.NoteCommands.Handlers
     {
         private readonly INoteAddComandRepository _noteAddComandRepository;
         private readonly ITagByIdQueryRepository _tagByIdQueryRepository;
+        private readonly IValidator<CreateNoteCommand> _validator;
 
-        public CreateNoteHandler(INoteAddComandRepository noteAddComandRepository, ITagByIdQueryRepository tagByIdQueryRepository)
+        public CreateNoteHandler(INoteAddComandRepository noteAddComandRepository, ITagByIdQueryRepository tagByIdQueryRepository, IValidator<CreateNoteCommand> validator)
         {
             _noteAddComandRepository = noteAddComandRepository;
             _tagByIdQueryRepository = tagByIdQueryRepository;
+            _validator = validator;
         }
 
         public async Task Handle(CreateNoteCommand command)
         {
-            var note = new Note
+            var validationResult = await _validator.ValidateAsync(command);
+
+            if (validationResult.IsValid is false)
+            {
+                var errors = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new ArgumentException($"Validation failed: {errors}");
+            }
+
+            Note note = new Note
             {
                 Title = command.Title,
                 Content = command.Content,

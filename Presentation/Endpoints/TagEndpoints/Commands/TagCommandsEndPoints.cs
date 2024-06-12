@@ -1,6 +1,5 @@
 ﻿using Notes.Application.Commands.TagCommands.Handlers;
 using Notes.Application.Commands.TagCommands.Models;
-using Notes.Domain.Entities;
 
 namespace Notes.Presentation.Endpoints.TagEndpoints.Commands
 {
@@ -8,7 +7,7 @@ namespace Notes.Presentation.Endpoints.TagEndpoints.Commands
     {
         public static void MapTagCommandsEndPoints(this IEndpointRouteBuilder endpoint)
         {
-            endpoint.MapPost("/v1/api/tags/", async (CreateTagCommand command, CreateTagHandler createTagHandler) =>
+            endpoint.MapPost("/v1/api/tag/", async (CreateTagCommand command, CreateTagHandler createTagHandler) =>
             {
                 try
                 {
@@ -21,7 +20,7 @@ namespace Notes.Presentation.Endpoints.TagEndpoints.Commands
                 }
             }).WithTags("Tags");
 
-            endpoint.MapDelete("/v1/api/tags/{id}", async (int id, RemoveTagHandler removeTagHandler) =>
+            endpoint.MapDelete("/v1/api/tag/{id}", async (int id, RemoveTagHandler removeTagHandler) =>
             {
                 try
                 {

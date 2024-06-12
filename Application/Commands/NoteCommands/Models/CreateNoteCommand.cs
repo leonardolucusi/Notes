@@ -1,4 +1,6 @@
-﻿namespace Notes.Application.Commands.NoteCommands.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Notes.Application.Commands.NoteCommands.Models
 {
     public class CreateNoteCommand
     {

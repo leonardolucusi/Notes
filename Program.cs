@@ -1,4 +1,7 @@
+using FluentValidation.AspNetCore;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Notes.Application.Commands.NoteCommands.Validators;
 using Notes.Infra;
 using Notes.Infra.IoC;
 using Notes.Presentation.Endpoints.NotesEndpoints.Commands;
@@ -17,6 +20,9 @@ builder.Services.AddDependecyInjection();
 builder.Services.AddDbContext<Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Context")
     ?? throw new InvalidOperationException("Connection string 'Context' not found.")));
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateNoteCommandValidator>();
+builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 

@@ -1,5 +1,4 @@
 ﻿using Notes.Application.Commands.TagCommands.Models;
-using Notes.Domain.Entities;
 using Notes.Domain.Repositories.ITagRepository.CommandRepository;
 
 namespace Notes.Application.Commands.TagCommands.Handlers

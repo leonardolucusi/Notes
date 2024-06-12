@@ -7,7 +7,7 @@ namespace Notes.Presentation.Endpoints.NotesEndpoints.Commands
     {
         public static void MapNoteCommandsEndpoints(this IEndpointRouteBuilder endpoint)
         {
-            endpoint.MapPost("/v1/api/notes/", async (CreateNoteCommand command, CreateNoteHandler createNoteHandler) =>
+            endpoint.MapPost("/v1/api/note/", async (CreateNoteCommand command, CreateNoteHandler createNoteHandler) =>
             {
                 try
                 {
@@ -20,7 +20,7 @@ namespace Notes.Presentation.Endpoints.NotesEndpoints.Commands
                 }
             }).WithTags("Notes");
 
-            endpoint.MapDelete("/v1/api/notes/{id}", async (int id, DeleteNoteHandler deleteNoteHandler) =>
+            endpoint.MapDelete("/v1/api/note/{id}", async (int id, DeleteNoteHandler deleteNoteHandler) =>
             {
                 try
                 {
@@ -34,7 +34,7 @@ namespace Notes.Presentation.Endpoints.NotesEndpoints.Commands
                 }
             }).WithTags("Notes");
 
-            endpoint.MapPatch("/v1/api/notes/{id}/title", async (UpdateNoteTitleCommand updateNoteTitleCommand, UpdateNoteTitleHandler updateNoteHandler) =>
+            endpoint.MapPatch("/v1/api/note/{id}/title", async (UpdateNoteTitleCommand updateNoteTitleCommand, UpdateNoteTitleHandler updateNoteHandler) =>
             {
                 try
                 {
@@ -52,7 +52,7 @@ namespace Notes.Presentation.Endpoints.NotesEndpoints.Commands
                 }
             }).WithTags("Notes");
 
-            endpoint.MapPatch("/v1/api/notes/{id}/content", async (UpdateNoteContentCommand updateNoteContentCommand, UpdateNoteContentHandler updateNoteContentHandler) =>
+            endpoint.MapPatch("/v1/api/note/{id}/content", async (UpdateNoteContentCommand updateNoteContentCommand, UpdateNoteContentHandler updateNoteContentHandler) =>
             {
                 try
                 {
@@ -65,7 +65,7 @@ namespace Notes.Presentation.Endpoints.NotesEndpoints.Commands
                 }
             }).WithTags("Notes");
 
-            endpoint.MapPatch("/v1/api/notes/{id}/isarchived", async (UpdateNoteIsArchivedCommand updateNoteIsArchivedCommand, UpdateNoteIsArchivedHandler updateNoteIsArchivedHandler) =>
+            endpoint.MapPatch("/v1/api/note/{id}/isarchived", async (UpdateNoteIsArchivedCommand updateNoteIsArchivedCommand, UpdateNoteIsArchivedHandler updateNoteIsArchivedHandler) =>
             {
                 try
                 {
@@ -78,7 +78,7 @@ namespace Notes.Presentation.Endpoints.NotesEndpoints.Commands
                 }
             }).WithTags("Notes");
 
-            endpoint.MapPatch("/v1/api/notes/{id}/isfavorite", async (UpdateNoteIsFavoriteCommand updateNoteIsFavoriteCommand, UpdateNoteIsFavoriteHandler updateNoteIsFavoriteHandler) =>
+            endpoint.MapPatch("/v1/api/note/{id}/isfavorite", async (UpdateNoteIsFavoriteCommand updateNoteIsFavoriteCommand, UpdateNoteIsFavoriteHandler updateNoteIsFavoriteHandler) =>
             {
                 try
                 {
