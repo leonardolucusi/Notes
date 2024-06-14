@@ -5,7 +5,7 @@ using Notes.Infra.Data.Context;
 
 namespace Notes.Infra.Data.Repositories
 {
-    public class NoteQueryRepository : INoteGetTotalCountQueryRepository, INoteGetAllQueryRepository, INoteGetPaginatedQueryRepository
+    public class NoteQueryRepository : INoteGetTotalCountQueryRepository, INoteGetAllQueryRepository, INoteGetPaginatedQueryRepository, INoteGetNotesByTagQueryRepository
     {
         private readonly NoteDbContext _context;
         public NoteQueryRepository(NoteDbContext context)
@@ -19,6 +19,15 @@ namespace Notes.Infra.Data.Repositories
           .Include(n => n.NoteTags)
           .ThenInclude(nt => nt.Tag)
           .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Note>> GetNotesByTag(int tagId)
+        {
+            var notes = await _context.Notes
+                .Where(n => n.NoteTags.Any(nt => nt.TagId == tagId))
+                .ToListAsync();
+
+            return notes;
         }
 
         public async Task<IEnumerable<Note>> GetPaginatedNotes(int pageNumber, int pageSize)

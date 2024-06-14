@@ -31,9 +31,24 @@ namespace Notes.Infra.IoC
             services.AddScoped<INoteGetTotalCountQueryRepository, NoteQueryRepository>();
             services.AddScoped<INoteGetAllQueryRepository, NoteQueryRepository>();
             services.AddScoped<INoteGetPaginatedQueryRepository, NoteQueryRepository>();
+            services.AddScoped<INoteGetNotesByTagQueryRepository, NoteQueryRepository>();
+
+            services.AddScoped<CreateNoteHandler>();
+            services.AddScoped<UpdateNoteTitleHandler>();
+            services.AddScoped<UpdateNoteContentHandler>();
+            services.AddScoped<DeleteNoteHandler>();
+            services.AddScoped<UpdateNoteIsArchivedHandler>();
+            services.AddScoped<UpdateNoteIsFavoriteHandler>();
+
+            services.AddScoped<GetAllNotesHandler>();
+            services.AddScoped<GetPaginationNotesHandler>();
+            services.AddScoped<GetNotesByTagHandler>();
 
             // NOTETAG
             services.AddScoped<INoteTagRepository, NoteTagRepository>();
+
+            services.AddScoped<RemoveTagFromNoteHandler>();
+            services.AddScoped<AddTagToNoteHandler>();
 
             // TAG
             services.AddScoped<ITagGetAllQueryRepository, TagQueryRepository>();
@@ -44,20 +59,7 @@ namespace Notes.Infra.IoC
 
             services.AddScoped<GetAllTagsHandler>();
             services.AddScoped<CreateTagHandler>();
-            services.AddScoped<RemoveTagHandler>();
-
-            services.AddScoped<RemoveTagFromNoteHandler>();
-            services.AddScoped<AddTagToNoteHandler>();
-
-            services.AddScoped<GetAllNotesHandler>();
-            services.AddScoped<GetPaginationNotesHandler>();
-
-            services.AddScoped<CreateNoteHandler>();
-            services.AddScoped<UpdateNoteTitleHandler>();
-            services.AddScoped<UpdateNoteContentHandler>();
-            services.AddScoped<DeleteNoteHandler>();
-            services.AddScoped<UpdateNoteIsArchivedHandler>();
-            services.AddScoped<UpdateNoteIsFavoriteHandler>();
+            services.AddScoped<RemoveTagHandler>();   
         }
     }
 }

@@ -33,6 +33,20 @@ namespace Notes.Presentation.Endpoints.NotesEndpoints.Queries
                     return Results.BadRequest(new { message = $"Error getting paginated notes: {ex.Message}" });
                 }
             }).WithTags("Notes");
+
+            endpoint.MapGet("/v1/api/notes/{tagId}", async (int tagId, GetNotesByTagHandler getNotesByTagHandler) =>
+            {
+                try
+                {
+                    var query = new GetNotesByTagQuery { TagId = tagId };
+                    var notesDto = await getNotesByTagHandler.Handle(query);
+                    return Results.Ok(notesDto);
+                }
+                catch(Exception ex) 
+                {
+                    return Results.BadRequest(new { message = $"Error getting notes by tag: {ex.Message}" });
+                }
+            }).WithTags("Notes");
         }
     }
 }
