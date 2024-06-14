@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Notes.Infra;
+using Notes.Infra.Data.Context;
 
 #nullable disable
 
 namespace Notes.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(NoteDbContext))]
     [Migration("20240604143820_notedb-creation")]
     partial class notedbcreation
     {

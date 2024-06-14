@@ -1,5 +1,6 @@
 ﻿using Notes.Domain.Entities;
 using Notes.Domain.Repositories.INoteRepository.CommandRepository;
+using Notes.Infra.Data.Context;
 
 namespace Notes.Infra.Data.Repositories
 {
@@ -11,9 +12,9 @@ namespace Notes.Infra.Data.Repositories
         INoteUpdateIsArchivedCommandRepository,
         INoteUpdateIsFavoriteCommandRepository
     {
-        private readonly Context _context;
+        private readonly NoteDbContext _context;
 
-        public NoteCommandRepository(Context context)
+        public NoteCommandRepository(NoteDbContext context)
         {
             _context = context;
         }

@@ -12,8 +12,8 @@ using Notes.Infra.Data.Context;
 namespace Notes.Migrations
 {
     [DbContext(typeof(NoteDbContext))]
-    [Migration("20240605233524_autoincrementTagId")]
-    partial class autoincrementTagId
+    [Migration("20240614133846_refactorMapsAndNoteUpdate")]
+    partial class refactorMapsAndNoteUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,7 +49,9 @@ namespace Notes.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 

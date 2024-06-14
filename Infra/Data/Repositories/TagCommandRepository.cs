@@ -1,5 +1,6 @@
 ﻿using Notes.Domain.Entities;
 using Notes.Domain.Repositories.ITagRepository.CommandRepository;
+using Notes.Infra.Data.Context;
 
 namespace Notes.Infra.Data.Repositories
 {
@@ -7,8 +8,8 @@ namespace Notes.Infra.Data.Repositories
         ITagAddCommandRepository,
         ITagRemoveCommandRepository
     {
-        private readonly Context _context;
-        public TagCommandRepository(Context context)
+        private readonly NoteDbContext _context;
+        public TagCommandRepository(NoteDbContext context)
         {
             _context = context;
         }

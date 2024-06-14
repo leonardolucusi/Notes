@@ -2,14 +2,15 @@
 using Notes.Domain.Entities;
 using Notes.Domain.Repositories.ITagRepository.ITagQueryRepository;
 using Notes.Domain.Repositories.ITagRepository.ITagQueryRepository.ITagQueryRepository;
+using Notes.Infra.Data.Context;
 
 namespace Notes.Infra.Data.Repositories
 {
     public class TagQueryRepository : ITagGetAllQueryRepository, ITagByIdQueryRepository
     {
-        private readonly Context _context;
+        private readonly NoteDbContext _context;
 
-        public TagQueryRepository(Context context)
+        public TagQueryRepository(NoteDbContext context)
         {
             _context = context;
         }

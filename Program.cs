@@ -2,13 +2,13 @@ using FluentValidation.AspNetCore;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Notes.Application.Commands.NoteCommands.Validators;
-using Notes.Infra;
 using Notes.Infra.IoC;
 using Notes.Presentation.Endpoints.NotesEndpoints.Commands;
 using Notes.Presentation.Endpoints.NotesEndpoints.Queries;
 using Notes.Presentation.Endpoints.NoteTagEndpoints.Commands;
 using Notes.Presentation.Endpoints.TagEndpoints.Commands;
 using Notes.Presentation.Endpoints.TagEndpoints.Queries;
+using Notes.Infra.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDependecyInjection();
 
-builder.Services.AddDbContext<Context>(options =>
+builder.Services.AddDbContext<NoteDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Context")
     ?? throw new InvalidOperationException("Connection string 'Context' not found.")));
 

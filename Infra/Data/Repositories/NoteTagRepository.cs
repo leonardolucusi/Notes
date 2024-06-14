@@ -1,13 +1,14 @@
 ﻿using Notes.Domain.Entities;
 using Notes.Domain.Repositories.INoteTagRepository;
+using Notes.Infra.Data.Context;
 
 namespace Notes.Infra.Data.Repositories
 {
     public class NoteTagRepository : INoteTagRepository
     {
-        private readonly Context _context;
+        private readonly NoteDbContext _context;
 
-        public NoteTagRepository(Context context)
+        public NoteTagRepository(NoteDbContext context)
         {
             _context = context;
         }

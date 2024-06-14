@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Notes.Domain.Entities;
 using Notes.Domain.Repositories.INoteRepository.QueryRepository;
+using Notes.Infra.Data.Context;
 
 namespace Notes.Infra.Data.Repositories
 {
     public class NoteQueryRepository : INoteGetTotalCountQueryRepository, INoteGetAllQueryRepository, INoteGetPaginatedQueryRepository
     {
-        private readonly Context _context;
-        public NoteQueryRepository(Context context)
+        private readonly NoteDbContext _context;
+        public NoteQueryRepository(NoteDbContext context)
         {
             _context = context;
         }

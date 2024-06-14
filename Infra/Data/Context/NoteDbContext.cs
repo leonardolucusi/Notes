@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Notes.Domain.Entities;
+using Notes.Infra.Data.Mappings;
 
-namespace Notes.Infra
+namespace Notes.Infra.Data.Context
 {
-    public class Context : DbContext
+    public class NoteDbContext : DbContext
     {
-        public Context() { }
-        public Context(DbContextOptions<Context> options) : base(options) { }
+        public NoteDbContext() { }
+        public NoteDbContext(DbContextOptions<NoteDbContext> options) : base(options) { }
         public DbSet<Note> Notes { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<NoteTag> NoteTags { get; set; }
@@ -14,13 +15,9 @@ namespace Notes.Infra
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Note>()
-                .Property(u => u.Id)
-                .ValueGeneratedOnAdd(); //Gera o ID automaticamente, nao sendo necessario passar ID no CREATE da camada de Presentation
-            
-            modelBuilder.Entity<Tag>()
-                .Property(u => u.Id)
-                .ValueGeneratedOnAdd();
+            modelBuilder.ApplyConfiguration(new NoteMap());
+            modelBuilder.ApplyConfiguration(new TagMap());
+            modelBuilder.ApplyConfiguration(new NoteTagMap());
 
             modelBuilder.Entity<NoteTag>()
             .HasKey(nt => new { nt.NoteId, nt.TagId });
