@@ -45,7 +45,7 @@ O projeto está organizado seguindo os princípios da Arquitetura Limpa:
 3. Execute as migrações para criar o banco de dados:
 dotnet ef database update
 
-**Testes**
+## Testes
 Os testes unitários são realizados com XUnit e Moq.
 
 Contribuição
