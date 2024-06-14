@@ -38,7 +38,7 @@ O projeto está organizado seguindo os princípios da Arquitetura Limpa:
 2. Configure a string de conexão com o SQL Server no arquivo appsettings.json:
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=.;Database=NotesDb;User Id=seu-usuario;Password=sua-senha;"
+    "DefaultConnection": "Data Source=YOURNAMECONFIG;Initial Catalog=NotesDB;Integrated Security=True;Encrypt=True;TrustServerCertificate=True"
   }
 }
 
