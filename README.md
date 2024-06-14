@@ -3,20 +3,16 @@
 Bem-vindo ao projeto Notes! Esta API foi desenvolvida para ajudar a organizar anotações de forma eficiente e estruturada. Abaixo você encontrará detalhes sobre a implementação, tecnologias utilizadas e como configurar o projeto.
 
 ## Tecnologias Utilizadas
-
-- **.NET Core 8**
-- **Arquitetura Limpa**
-  - Core/Domain
-  - Infrastructure
-  - Application
-  - API/Interface
-- **CQRS (Command Query Responsibility Segregation)**
-- **Banco de Dados SQL Server**
-- **Entity Framework Core**
-- **Padrão Repository**
-- **Validação de Dados com FluentValidation**
-- **Testes Unitários com XUnit e Moq**
-- 
+Este projeto foi construído utilizando tecnologias modernas e seguindo as melhores práticas de desenvolvimento de software.
+- ** .NET Core 8: Plataforma de desenvolvimento de alto desempenho e com suporte para construção de aplicações escaláveis.
+- ** Arquitetura Limpa: Separação clara de responsabilidades com camadas distintas (Core/Domain, Infrastructure, Application, API/Interface), promovendo alta testabilidade e manutenção do código.
+- **CQRS (Command Query Responsibility Segregation): Separação de operações de leitura e escrita, otimizando o desempenho e a organização do código.
+- **Banco de Dados SQL Server: Utilização de banco de dados relacional confiável e eficiente.
+- ** Entity Framework Core: ORM robusto para mapeamento objeto-relacional, facilitando a interação com o banco de dados.
+- **Padrão Repository: Abstração da lógica de acesso aos dados, promovendo um design desacoplado e fácil de testar.
+- **Validação de Dados: Implementação de validações consistentes com o FluentValidation, garantindo a integridade dos dados.
+- **Testes Unitários: Adoção de práticas de testes unitários utilizando XUnit e Moq para assegurar a qualidade e a confiabilidade do código.
+  
 ![notes-endpoint](https://github.com/leonardolucusi/Notes/assets/61367434/53cf4726-eedd-4ea5-8160-a54e8d7404c8)
 
 ## Estrutura do Projeto
