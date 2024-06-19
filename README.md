@@ -48,8 +48,8 @@ dotnet ef database update
 ## Testes
 Os testes unitários são realizados com XUnit e Moq.
 
-Contribuição
+## Contribuição
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
 
-Licença
+## Licença
 Este projeto está licenciado sob a licença GPL. Veja o arquivo LICENSE para mais detalhes.
