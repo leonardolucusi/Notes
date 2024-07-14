@@ -45,11 +45,11 @@ O projeto está organizado seguindo os princípios da Arquitetura Limpa:
 3. Execute as migrações para criar o banco de dados:
 dotnet ef database update
 
-Testes
+## Testes
 Os testes unitários são realizados com XUnit e Moq.
 
-Contribuição
+## Contribuição
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
 
-Licença
+## Licença
 Este projeto está licenciado sob a licença GPL. Veja o arquivo LICENSE para mais detalhes.
